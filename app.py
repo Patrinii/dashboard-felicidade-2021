@@ -1,4 +1,4 @@
-
+codigo_app = """
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,7 +6,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Dashboard Felicidade 2021", layout="wide")
 
-# Estilização escura e refinada
+# Estilo escuro só no layout, não nos gráficos
 st.markdown('''
     <style>
         .main {
@@ -48,7 +48,7 @@ with col3:
 
 st.markdown("---")
 
-# Gráficos agrupados em 3 colunas
+# Gráficos agrupados em 3 colunas (fundo branco padrão)
 col4, col5, col6 = st.columns(3)
 
 with col4:
@@ -56,7 +56,7 @@ with col4:
     fig1, ax1 = plt.subplots(figsize=(3.5, 2.5))
     ax1.plot(df_filtrado['Country name'], df_filtrado['Ladder score'], color="#f7931e", marker='o', linewidth=1)
     ax1.tick_params(axis='x', labelrotation=90, labelsize=7)
-    fig1.patch.set_facecolor('#222222')
+    fig1.patch.set_facecolor('white')  # gráfico claro
     st.pyplot(fig1)
 
 with col5:
@@ -64,7 +64,7 @@ with col5:
     fig2, ax2 = plt.subplots(figsize=(3.5, 2.5))
     ax2.bar(df_filtrado['Country name'], df_filtrado['Logged GDP per capita'], color="#f7931e")
     ax2.tick_params(axis='x', labelrotation=90, labelsize=7)
-    fig2.patch.set_facecolor('#222222')
+    fig2.patch.set_facecolor('white')  # gráfico claro
     st.pyplot(fig2)
 
 with col6:
@@ -73,12 +73,12 @@ with col6:
     fig3, ax3 = plt.subplots(figsize=(3.5, 2.5))
     ax3.pie(regiao_count, labels=regiao_count.index, autopct='%1.1f%%',
             colors=["#f7931e", "#444444", "#888888", "#CCCCCC"])
-    fig3.patch.set_facecolor('#222222')
+    fig3.patch.set_facecolor('white')  # gráfico claro
     st.pyplot(fig3)
 
 st.markdown("---")
 
-# Gráfico de dispersão refinado
+# Dispersão clara
 st.markdown("**🔵 Felicidade x PIB per Capita**")
 fig4 = px.scatter(
     df_filtrado,
@@ -96,6 +96,12 @@ fig4 = px.scatter(
 )
 st.plotly_chart(fig4, use_container_width=True)
 
-# Tabela final
+# Tabela
 st.subheader("📋 Tabela de Dados da Região Selecionada")
 st.dataframe(df_filtrado.style.background_gradient(cmap='Oranges'))
+"""
+
+with open("app.py", "w") as f:
+    f.write(codigo_app)
+
+print("app.py criado com fundo escuro + gráficos claros")
