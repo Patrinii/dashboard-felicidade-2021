@@ -43,7 +43,7 @@ with col2:
     st.pyplot(fig2)
 
 with col3:
-    st.subheader("Países por Região")
+    st.subheader("📉 Países por Região")
     regiao_count = df['Regional indicator'].value_counts()
     fig3, ax3 = plt.subplots(figsize=(4, 3))
     ax3.pie(regiao_count, labels=regiao_count.index, autopct='%1.1f%%')
