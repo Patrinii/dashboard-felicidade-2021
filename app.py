@@ -75,9 +75,14 @@ with col6:
     st.markdown("**🥧 Distribuição por Região**")
     regiao_count = df['Regional indicator'].value_counts()
     fig3, ax3 = plt.subplots(figsize=(3.5, 2.5))
-    ax3.pie(regiao_count, labels=regiao_count.index, autopct='%1.1f%%',
-            colors=["#f7931e", "#444444", "#888888", "#CCCCCC"])
-    fig3.patch.set_facecolor("white")  # fundo branco
+    fig3.patch.set_facecolor("white")  # fundo fora dos eixos
+    ax3.set_facecolor("white")         # fundo dentro dos eixos
+    ax3.pie(
+        regiao_count,
+        labels=regiao_count.index,
+        autopct='%1.1f%%',
+        colors=["#f7931e", "#444444", "#888888", "#CCCCCC"]
+    )
     st.pyplot(fig3)
 
 st.markdown("---")
